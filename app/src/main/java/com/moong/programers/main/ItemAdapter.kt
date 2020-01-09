@@ -44,12 +44,15 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
         notifyDataSetChanged()
     }
     fun addItems(list: List<ItemData>){
-        mItems.addAll(list)
+        val a = mItems.size
+        val b = list.size
+        mItems.addAll(list.subList(a,b))
+//        mItems.addAll(list)
         notifyItemRangeChanged(mItems.size,list.size)
     }
     private fun setFadeAnimation(view: View) {
         val anim = AlphaAnimation(0.0f, 1.0f)
-        anim.duration = 500
+        anim.duration = 400
         view.startAnimation(anim)
     }
 

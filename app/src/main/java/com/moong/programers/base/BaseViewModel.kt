@@ -7,6 +7,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import com.moong.programers.base.impl.BaseInterface
+import com.moong.programers.base.impl.NonActivityInterface
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
@@ -22,7 +24,7 @@ import org.greenrobot.eventbus.EventBus
  */
 
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application), BaseInterface,
-        DefaultLifecycleObserver, Observable {
+        DefaultLifecycleObserver, Observable, NonActivityInterface {
     private var mCallbacks: PropertyChangeRegistry? = null
     protected val compositeDisposable = CompositeDisposable()
 

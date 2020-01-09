@@ -1,4 +1,4 @@
-package com.moong.programers.module
+package com.moong.programers.base
 
 import android.app.Activity
 import android.app.Application
@@ -8,13 +8,12 @@ import java.lang.ref.WeakReference
 import java.util.*
 
 /**
- * PyxisBaseApp
+ * ChallangeProject
  * Class: ActivityReference
- * Created by Pyxis on 2/4/18.
+ * Created by appg on 2020-01-09.
  *
  * Description:
  */
-
 object ActivityReference {
     private var mTopActivityWeakRef: WeakReference<Activity>? = null
     private val mActivityList: LinkedList<Activity> = LinkedList()
@@ -58,7 +57,8 @@ object ActivityReference {
 
     @JvmStatic
     fun getContext(): Context {
-        return getActivity() ?: mApplicationWeakRef?.get() as Context
+        return getActivity()
+                ?: mApplicationWeakRef?.get() as Context
     }
 
     @JvmStatic

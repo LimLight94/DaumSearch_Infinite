@@ -1,8 +1,8 @@
-package com.moong.programers.base;
+package com.moong.programers.base.impl;
 
 import android.app.Activity;
 import android.os.Bundle;
-import com.moong.programers.base.port.ActivityInterfacePort;
+import com.moong.programers.base.impl.port.ActivityInterfacePort;
 
 /**
  * PyxisBaseApp

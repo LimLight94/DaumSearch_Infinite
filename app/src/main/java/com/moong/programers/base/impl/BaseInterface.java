@@ -1,9 +1,11 @@
-package com.moong.programers.base;
+package com.moong.programers.base.impl;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+
+import com.moong.programers.base.BaseViewModel;
 
 @SuppressWarnings("ALL")
 public interface BaseInterface extends ActivityInterface{

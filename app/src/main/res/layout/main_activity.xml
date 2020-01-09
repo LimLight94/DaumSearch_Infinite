@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/pointColor"
+            android:onClick="@{(v)->viewModel.showDialog(v)}"
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText

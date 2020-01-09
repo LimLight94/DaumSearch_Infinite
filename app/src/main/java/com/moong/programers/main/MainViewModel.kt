@@ -1,18 +1,20 @@
 package com.moong.programers.main
 
 import android.app.Application
+import android.view.View
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LifecycleOwner
 import com.moong.programers.base.BaseViewModel
 import com.moong.programers.constants.Constants
 import com.moong.programers.data.ItemData
+import com.moong.programers.detail.DetailDialog
 import com.moong.programers.net.MainRepository
 
 class MainViewModel
 constructor(application: Application) : BaseViewModel(application) {
     val mDataList = ObservableArrayList<ItemData>()
-    val mSkinType = ObservableField<String>(Constants.API_SKIN_TYPE_OILY)
+    private val mSkinType = ObservableField<String>(Constants.API_SKIN_TYPE_OILY)
 
     private var currentPage = 1
     private val mMainRepository = MainRepository
@@ -41,5 +43,9 @@ constructor(application: Application) : BaseViewModel(application) {
 
     fun loadNextPage(){
         getItemList(mSkinType.get()!!,currentPage)
+    }
+
+    fun showDialog(view : View){
+        DetailDialog().show(requireAppCompatActivity().supportFragmentManager, "")
     }
 }
