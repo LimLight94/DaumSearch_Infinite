@@ -11,5 +11,5 @@
     <color name="white">#ffffff</color>
 
 
-    <color name="transParent">#ffffffff</color>
+    <color name="transParent">#00000000</color>
 </resources>

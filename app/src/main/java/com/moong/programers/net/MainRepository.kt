@@ -1,7 +1,10 @@
 package com.moong.programers.net
 
+import android.app.PendingIntent.getService
+import com.moong.programers.constants.Constants
 import com.moong.programers.constants.Constants.Companion.BASE_URL
 import com.moong.programers.data.ItemData
+import com.moong.programers.data.ItemDetailData
 import com.moong.programers.data.Res
 
 
@@ -11,6 +14,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import java.util.concurrent.TimeUnit
 
 
 object MainRepository {
@@ -18,7 +22,10 @@ object MainRepository {
 
     private val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(OkHttpClient.Builder().addInterceptor(interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)).build())
+            .client(OkHttpClient.Builder()
+                    .addInterceptor(interceptor.setLevel(HttpLoggingInterceptor.Level.BODY))
+                    .readTimeout(Constants.TIME_OUT.toLong(),TimeUnit.MILLISECONDS)
+                    .build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -34,5 +41,10 @@ object MainRepository {
         return getService().getList(skinType, page)
                 .toObservable()
                 .compose(ASyncTransformer())
+    }
+    fun getItemDetail(id: Int): Observable<Res<ItemDetailData>> {
+        return getService().getItemDetail(id)
+            .toObservable()
+            .compose(ASyncTransformer())
     }
 }

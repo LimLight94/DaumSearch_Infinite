@@ -6,4 +6,13 @@
 
     <string name="price_format">%,d원</string>
     <string name="list_size_format">%d items</string>
+
+    <string name="network_error_msg">네트워크에 연결 할 수 없습니다. 확인 후 다시 시도해주세요.</string>
+
+    <string-array name="type_array">
+        <item>모든 피부 타입"</item>
+        <item>지성 타입</item>
+        <item>건성 타입</item>
+        <item>민감성 타입</item>
+    </string-array>
 </resources>

@@ -26,7 +26,7 @@ object BindAdapter {
     fun bindItems(recyclerView: RecyclerView, list: List<ItemData>) {
         val adapter = recyclerView.adapter ?: return
         if (adapter is ItemAdapter) {
-            if(adapter.itemCount>0){
+            if(adapter.itemCount>0 && list.isNotEmpty()){
                 adapter.addItems(list)
             }else{
                 adapter.setItems(list)

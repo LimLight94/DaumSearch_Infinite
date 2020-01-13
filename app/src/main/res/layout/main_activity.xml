@@ -30,7 +30,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/transParent" />
+                android:background="@color/white" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -62,16 +62,17 @@
                             android:gravity="center_vertical"
                             android:paddingStart="12dp"
                             android:text="@{@string/list_size_format(viewModel.mDataList.size())}"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spinner"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="end|center_vertical"
-                            android:paddingEnd="12dp"
-                            android:text="필터 표시"
-                            android:textColor="@color/black" />
+                            android:entries="@array/type_array"
+                            android:spinnerMode="dropdown"
+                            android:theme="@style/spinnerItemStyle" />
                     </LinearLayout>
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
             </com.google.android.material.appbar.AppBarLayout>
@@ -80,10 +81,10 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scrollbarThumbVertical="@color/pointColor"
                 android:scrollbars="vertical"
                 app:items="@{viewModel.mDataList}"
-                android:scrollbarThumbVertical="@color/pointColor"
-                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

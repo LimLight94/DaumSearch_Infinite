@@ -10,9 +10,10 @@ package com.moong.programers.constants
  */
 interface Constants {
     companion object {
-        val BASE_URL = "https://6uqljnm1pb.execute-api.ap-northeast-2.amazonaws.com/prod/"
-        val API_SKIN_TYPE_OILY = "oily"
-        val API_SKIN_TYPE_DRY = "dry"
-        val API_SKIN_TYPE_SENSITIVE = "sensitive"
+        const val BASE_URL = "https://6uqljnm1pb.execute-api.ap-northeast-2.amazonaws.com/prod/"
+        const val TIME_OUT = 10000
+        const val API_SKIN_TYPE_OILY = "oily"
+        const val API_SKIN_TYPE_DRY = "dry"
+        const val API_SKIN_TYPE_SENSITIVE = "sensitive"
     }
 }
