@@ -1,8 +1,11 @@
 package com.moong.programers.main
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.AdapterView
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.moong.programers.R
@@ -37,8 +40,15 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
                     3-> mViewModel.mSkinType.set(Constants.API_SKIN_TYPE_SENSITIVE)
                 }
             }
-
         }
+        mBinding.editText.setOnEditorActionListener(object :TextView.OnEditorActionListener{
+            override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                    mViewModel.mKeyWord.set(mBinding.editText.text.toString())
+                }
+                return false
+            }
+        })
     }
     private fun initRecyclerView(recyclerView : RecyclerView, adapter: ItemAdapter){
         try {
@@ -51,7 +61,6 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
                 override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                     mViewModel.loadNextPage()
                 }
-
             })
         } catch (e: Exception) {
             throw IllegalArgumentException("Target class not inherit ViewTypeRecyclerAdapter", e)
