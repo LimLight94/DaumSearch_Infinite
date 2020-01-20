@@ -16,6 +16,7 @@ import com.moong.programers.base.ActivityReference
  */
 interface NonActivityInterface {
 
+    @JvmDefault
     fun startActivity(intent: Intent) {
         val context = ActivityReference.getContext()
 
@@ -32,6 +33,7 @@ interface NonActivityInterface {
      * @param resultCode
      * @param bundle
      */
+    @JvmDefault
     fun setResult(resultCode: Int, bundle: Bundle? = null) {
         val activity = requireActivity()
         if (activity.isDestroyed) return
@@ -42,15 +44,18 @@ interface NonActivityInterface {
         activity.setResult(resultCode, intent)
     }
 
+    @JvmDefault
     fun requireActivity(): Activity {
         return ActivityReference.getActivtyReference()
                 ?: throw IllegalStateException("Activity not fetched from cache")
     }
 
+    @JvmDefault
     fun requireContext(): Context {
         return ActivityReference.getContext()
     }
 
+    @JvmDefault
     fun requireAppCompatActivity(): AppCompatActivity {
         val activity = requireActivity()
         return activity as? AppCompatActivity

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#9100BE</color>
-    <color name="colorPrimaryDark">#ffffffff</color>
-    <color name="colorAccent">#ffffffff</color>
+    <color name="colorPrimaryDark">#320141</color>
+    <color name="colorAccent">#D973F8</color>
 
     <color name="pointColor">#9100BE</color>
 

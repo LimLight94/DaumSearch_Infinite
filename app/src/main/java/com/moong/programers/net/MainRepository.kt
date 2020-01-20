@@ -1,11 +1,12 @@
 package com.moong.programers.net
 
-import android.app.PendingIntent.getService
 import com.moong.programers.constants.Constants
 import com.moong.programers.constants.Constants.Companion.BASE_URL
 import com.moong.programers.data.ItemData
 import com.moong.programers.data.ItemDetailData
 import com.moong.programers.data.Res
+import com.moong.programers.net.compose.ASyncTransformer
+import com.moong.programers.net.compose.RWComposer
 
 
 import io.reactivex.Observable
@@ -24,7 +25,7 @@ object MainRepository {
             .baseUrl(BASE_URL)
             .client(OkHttpClient.Builder()
                     .addInterceptor(interceptor.setLevel(HttpLoggingInterceptor.Level.BODY))
-                    .readTimeout(Constants.TIME_OUT.toLong(),TimeUnit.MILLISECONDS)
+                    .readTimeout(Constants.TIME_OUT.toLong(), TimeUnit.MILLISECONDS)
                     .build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
@@ -35,16 +36,21 @@ object MainRepository {
     fun getItemList(skinType: String, page: Int, keyWord: String): Observable<Res<List<ItemData>>> {
         return getService().getList(skinType, page, keyWord)
                 .toObservable()
+                .compose(RWComposer(true))
                 .compose(ASyncTransformer())
+
     }
+
     fun getItemList(skinType: String, page: Int): Observable<Res<List<ItemData>>> {
         return getService().getList(skinType, page)
                 .toObservable()
+                .compose(RWComposer(true))
                 .compose(ASyncTransformer())
     }
+
     fun getItemDetail(id: Int): Observable<Res<ItemDetailData>> {
         return getService().getItemDetail(id)
-            .toObservable()
-            .compose(ASyncTransformer())
+                .toObservable()
+                .compose(ASyncTransformer())
     }
 }

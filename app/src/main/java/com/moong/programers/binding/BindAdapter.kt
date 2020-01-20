@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.moong.programers.data.ItemData
-import com.moong.programers.main.ItemAdapter
+import com.moong.programers.adapter.ItemAdapter
 
 
 object BindAdapter {
@@ -25,12 +25,15 @@ object BindAdapter {
     @BindingAdapter("items")
     fun bindItems(recyclerView: RecyclerView, list: List<ItemData>) {
         val adapter = recyclerView.adapter ?: return
-        if (adapter is ItemAdapter) {
-            if(adapter.itemCount>0 && list.isNotEmpty()){
-                adapter.addItems(list)
-            }else{
-                adapter.setItems(list)
-            }
+        if(adapter is ItemAdapter){
+            adapter.setItems(list)
         }
+//        if (adapter is ItemAdapter) {
+//            if(adapter.itemCount>0 && list.isNotEmpty()){
+//                adapter.addItems(list)
+//            }else{
+//                adapter.setItems(list)
+//            }
+//        }
     }
 }

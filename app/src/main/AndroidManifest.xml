@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".detail.DetailActivity" />
+        <activity android:name=".utils.DoubleBackInvoker$FinishActivity"/>
     </application>
 
 </manifest>

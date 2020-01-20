@@ -1,17 +1,18 @@
 package com.moong.programers.main
 
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.AdapterView
-import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.moong.programers.R
+import com.moong.programers.adapter.EndlessRecyclerViewScrollListener
+import com.moong.programers.adapter.ItemAdapter
 import com.moong.programers.base.BaseActivity
-import com.moong.programers.constants.Constants
 import com.moong.programers.databinding.MainActivityBinding;
+import com.moong.programers.utils.DoubleBackInvoker
+import com.moong.programers.utils.ShowDialogEvent
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
+import org.greenrobot.eventbus.Subscribe
 
 class MainActivity : BaseActivity<MainActivityBinding>() {
 
@@ -26,44 +27,45 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
 
         init()
     }
-    private fun init(){
-        initRecyclerView(mBinding.list, ItemAdapter())
-        mBinding.spinner.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                when(position){
-                    0-> mViewModel.mSkinType.set(Constants.API_SKIN_TYPE_OILY)
-                    1-> mViewModel.mSkinType.set(Constants.API_SKIN_TYPE_OILY)
-                    2-> mViewModel.mSkinType.set(Constants.API_SKIN_TYPE_DRY)
-                    3-> mViewModel.mSkinType.set(Constants.API_SKIN_TYPE_SENSITIVE)
-                }
+    private fun init() {
+        initRecyclerView(mBinding.list, ItemAdapter())
+        mBinding.editText.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                mViewModel.mKeyWord.set(mBinding.editText.text.toString())
             }
+            false
         }
-        mBinding.editText.setOnEditorActionListener(object :TextView.OnEditorActionListener{
-            override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-                if(actionId == EditorInfo.IME_ACTION_SEARCH){
-                    mViewModel.mKeyWord.set(mBinding.editText.text.toString())
-                }
-                return false
-            }
-        })
     }
-    private fun initRecyclerView(recyclerView : RecyclerView, adapter: ItemAdapter){
-        try {
-            val layoutManager = GridLayoutManager(recyclerView.context,2)
-            recyclerView.layoutManager = layoutManager
-            recyclerView.adapter = adapter
-            recyclerView.itemAnimator
-            recyclerView.addItemDecoration(ItemAdapter.ItemOffsetDecoration(recyclerView.context,R.dimen.item_offset))
-            recyclerView.addOnScrollListener(object :EndlessRecyclerViewScrollListener(layoutManager){
+
+    private fun initRecyclerView(recyclerView: RecyclerView, itemAdapter: ItemAdapter) = try {
+        val gridlayoutManager = GridLayoutManager(recyclerView.context, 2)
+        recyclerView.apply {
+            layoutManager = gridlayoutManager
+            adapter = itemAdapter
+            addItemDecoration(ItemAdapter.ItemOffsetDecoration(context, R.dimen.item_offset))
+            addOnScrollListener(object : EndlessRecyclerViewScrollListener(gridlayoutManager) {
                 override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                     mViewModel.loadNextPage()
                 }
             })
-        } catch (e: Exception) {
-            throw IllegalArgumentException("Target class not inherit ViewTypeRecyclerAdapter", e)
         }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+    override fun onBackPressed() {
+        if (mBinding.layout.panelState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            mBinding.layout.panelState = SlidingUpPanelLayout.PanelState.HIDDEN
+        } else {
+            DoubleBackInvoker.execute(R.string.app_close_message)
+        }
+
+    }
+
+    @Subscribe
+    fun getShowDialogEvent(event: ShowDialogEvent) {
+        mViewModel.getItemDetail(event.itemId) { mBinding.layout.panelState = SlidingUpPanelLayout.PanelState.EXPANDED }
+
     }
 }

@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Programers</string>
 
-    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
-    <string name="appbar_scrolling_view_bottombehavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
+    <string name="app_close_message">한번 더 누르면 앱이 종료됩니다</string>
 
     <string name="price_format">%,d원</string>
     <string name="list_size_format">%d items</string>

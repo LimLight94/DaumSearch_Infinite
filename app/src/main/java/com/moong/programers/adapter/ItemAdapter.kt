@@ -1,4 +1,4 @@
-package com.moong.programers.main
+package com.moong.programers.adapter
 
 import android.content.Context
 import android.graphics.Rect
@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.DimenRes
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.moong.programers.data.ItemData
 import com.moong.programers.databinding.ItemListBinding
 import android.view.animation.AlphaAnimation
-
+import androidx.recyclerview.widget.DiffUtil
+import com.moong.programers.utils.ShowDialogEvent
+import org.greenrobot.eventbus.EventBus
 
 
 /**
@@ -25,7 +26,12 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     private val mItems: ArrayList<ItemData> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        var binding = ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding.root.setOnClickListener {
+            binding.bean?.id?.let {
+                EventBus.getDefault().post(ShowDialogEvent(it))
+            }
+        }
         return ItemViewHolder(binding)
     }
 
@@ -38,18 +44,28 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
         setFadeAnimation(holder.itemView)
     }
 
-    fun setItems(list: List<ItemData>){
+    //    fun setItems(list: List<ItemData>){
+//        mItems.clear()
+//        mItems.addAll(list)
+//        notifyDataSetChanged()
+//    }
+    fun setItems(list: List<ItemData>) {
+        val diffCallback = ItemDiffCallback(mItems,list)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
         mItems.clear()
         mItems.addAll(list)
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
-    fun addItems(list: List<ItemData>){
+
+    fun addItems(list: List<ItemData>) {
         val a = mItems.size
         val b = list.size
-        mItems.addAll(list.subList(a,b))
+        mItems.addAll(list.subList(a, b))
 //        mItems.addAll(list)
-        notifyItemRangeChanged(mItems.size,list.size)
+        notifyItemRangeChanged(mItems.size, list.size)
     }
+
     private fun setFadeAnimation(view: View) {
         val anim = AlphaAnimation(0.0f, 1.0f)
         anim.duration = 400
@@ -59,14 +75,14 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(var binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item : ItemData){
+        fun bind(item: ItemData) {
             binding.bean = item
         }
     }
 
-    class ItemOffsetDecoration(var mItemOffset : Int) : RecyclerView.ItemDecoration() {
+    class ItemOffsetDecoration(var mItemOffset: Int) : RecyclerView.ItemDecoration() {
 
-        constructor(context:Context, @DimenRes itemOffsetId:Int ) : this(context.resources.getDimensionPixelSize(itemOffsetId))
+        constructor(context: Context, @DimenRes itemOffsetId: Int) : this(context.resources.getDimensionPixelSize(itemOffsetId))
 
         override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
             super.getItemOffsets(outRect, view, parent, state)
