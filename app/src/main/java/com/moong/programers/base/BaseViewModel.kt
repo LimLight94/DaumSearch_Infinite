@@ -48,6 +48,11 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         compositeDisposable.add(disposable)
     }
 
+    protected fun removeDisposable(disposable: Disposable){
+        compositeDisposable.delete(disposable)
+    }
+
+
     override fun addOnPropertyChangedCallback(onPropertyChangedCallback: Observable.OnPropertyChangedCallback) {
         if (mCallbacks == null) {
             mCallbacks = PropertyChangeRegistry()

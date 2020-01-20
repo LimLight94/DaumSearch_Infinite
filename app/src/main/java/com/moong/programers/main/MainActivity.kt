@@ -65,7 +65,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
 
     @Subscribe
     fun getShowDialogEvent(event: ShowDialogEvent) {
-        mViewModel.getItemDetail(event.itemId) { mBinding.layout.panelState = SlidingUpPanelLayout.PanelState.EXPANDED }
-
+        mViewModel.getItemDetail(event.itemId)
+        mBinding.layout.panelState = SlidingUpPanelLayout.PanelState.EXPANDED
     }
 }

@@ -21,7 +21,7 @@
         sothree:umanoDragView="@+id/dragView"
         sothree:umanoOverlay="true"
         sothree:umanoPanelHeight="0dp"
-        sothree:umanoScrollableView="@+id/dragView"
+        sothree:umanoScrollableView="@+id/dragScroll"
         sothree:umanoShadowHeight="0dp">
 
         <FrameLayout
@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:visibility="@{viewModel.MIsLoading? View.VISIBLE: View.GONE}"
+                    android:visibility="@{viewModel.MIsContent_Loading? View.VISIBLE: View.GONE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -135,8 +135,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/transParent"
-            android:orientation="vertical"
-            android:clickable="false">
+            android:clickable="false"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -151,13 +151,28 @@
 
             </LinearLayout>
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_bottom_sheet"
+                android:paddingTop="5dp"
+                android:visibility="@{viewModel.MIsDetail_Loading? View.VISIBLE: View.GONE}">
+
+                <ProgressBar
+                    style="@android:style/Widget.DeviceDefault.ProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp" />
+            </FrameLayout>
+
             <ScrollView
                 android:id="@+id/dragScroll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_bottom_sheet"
-                android:paddingTop="5dp"
-                android:clickable="false">
+                android:clickable="false"
+                android:paddingTop="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
