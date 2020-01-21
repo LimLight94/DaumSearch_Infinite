@@ -135,7 +135,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/transParent"
-            android:clickable="false"
             android:orientation="vertical">
 
             <LinearLayout
@@ -181,13 +180,30 @@
                     android:paddingStart="14dp"
                     android:paddingEnd="14dp">
 
-                    <ImageView
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="9dp"
-                        android:adjustViewBounds="true"
-                        app:imageUrl="@{viewModel.MImage}" />
+                        android:layout_gravity="center_horizontal">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="9dp"
+                            android:adjustViewBounds="true"
+                            app:imageUrl="@{viewModel.MImage}" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|top"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginEnd="14dp"
+                            android:onClick="@{viewModel::clickCloseBtn}"
+                            android:src="@drawable/baseline_search_24" />
+
+                    </FrameLayout>
+
 
                     <TextView
                         android:layout_width="wrap_content"

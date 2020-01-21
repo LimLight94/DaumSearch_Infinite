@@ -29,6 +29,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
     }
 
     private fun init() {
+        mBinding.layout.isTouchEnabled = false
         initRecyclerView(mBinding.list, ItemAdapter())
         mBinding.editText.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -65,7 +66,11 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
 
     @Subscribe
     fun getShowDialogEvent(event: ShowDialogEvent) {
-        mViewModel.getItemDetail(event.itemId)
-        mBinding.layout.panelState = SlidingUpPanelLayout.PanelState.EXPANDED
+        if (event.itemId == -1) {
+            mBinding.layout.panelState = SlidingUpPanelLayout.PanelState.HIDDEN
+        } else {
+            mViewModel.getItemDetail(event.itemId)
+            mBinding.layout.panelState = SlidingUpPanelLayout.PanelState.EXPANDED
+        }
     }
 }

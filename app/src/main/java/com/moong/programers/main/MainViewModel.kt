@@ -1,6 +1,7 @@
 package com.moong.programers.main
 
 import android.app.Application
+import android.view.View
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
@@ -10,6 +11,7 @@ import com.moong.programers.constants.Constants
 import com.moong.programers.data.ItemData
 import com.moong.programers.net.MainRepository
 import com.moong.programers.utils.RxUtils.Companion.propertyChanges
+import com.moong.programers.utils.ShowDialogEvent
 import com.moong.programers.utils.ignoreError
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
@@ -32,7 +34,7 @@ constructor(application: Application) : BaseViewModel(application) {
     private var currentPage = 1
     private val mMainRepository = MainRepository
 
-    private var detailDisposable :Disposable? = null
+    private lateinit var detailDisposable: Disposable
 
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
@@ -81,11 +83,11 @@ constructor(application: Application) : BaseViewModel(application) {
     }
 
     fun getItemDetail(id: Int) {
-        if(mIsDetail_Loading.get()){
-            detailDisposable?.dispose()
+        if (mIsDetail_Loading.get()) {
+            detailDisposable.dispose()
         }
         mIsDetail_Loading.set(true)
-        val detailDisposable= mMainRepository.getItemDetail(id).subscribe({ itemBeansRes ->
+        detailDisposable = mMainRepository.getItemDetail(id).subscribe({ itemBeansRes ->
             itemBeansRes.body?.let {
                 mTitle.set(it.title)
                 mImage.set(it.fullSizeImage)
@@ -93,9 +95,15 @@ constructor(application: Application) : BaseViewModel(application) {
                 mDscrption.set(it.description)
                 mIsDetail_Loading.set(false)
             }
-        }, { ignoreError(it)
-            mIsDetail_Loading.set(false)})
+        }, {
+            ignoreError(it)
+            mIsDetail_Loading.set(false)
+        })
         addDisposable(detailDisposable)
+    }
+
+    fun clickCloseBtn(view : View){
+        postEvent(ShowDialogEvent(-1))
     }
 
 }
