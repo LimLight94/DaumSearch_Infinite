@@ -7,13 +7,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.moong.programers.base.ActivityReference
 
-/**
- * ChallangeProject
- * Class: NonActivityInterface
- * Created by appg on 2020-01-09.
- *
- * Description:
- */
 interface NonActivityInterface {
 
     @JvmDefault
@@ -62,8 +55,3 @@ interface NonActivityInterface {
                 ?: throw IllegalStateException("Activity not inherited by AppCompatActivity")
     }
 }
-/**
- * 결과 설정
- *
- * @param resultCode
- */

@@ -14,14 +14,6 @@ import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
 
 
-/**
- * PyxisBaseApp
- * Class: BaseViewModel
- * Created by Pyxis on 2018-01-25.
- *
- *
- * Description:
- */
 
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application), BaseInterface,
         DefaultLifecycleObserver, Observable, NonActivityInterface {

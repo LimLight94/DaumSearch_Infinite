@@ -7,13 +7,6 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.functions.Function;
 
-/**
- * Appg-EzBalance
- * Class: RWComposer
- * Created by d on 2019-09-30.
- * <p>
- * Description:
- */
 public class RWComposer<T> extends Transformer<T> {
     private Function mFlatMapFunction;
 
@@ -22,7 +15,7 @@ public class RWComposer<T> extends Transformer<T> {
             if (value != null && value.getStatusCode() == 200) {
                 return Observable.just(value);
             } else {
-                return Observable.error(ResultCodeException.create(value, showPopup));
+                return Observable.error(ResultCodeException.Companion.create(value, showPopup));
             }
         };
     }

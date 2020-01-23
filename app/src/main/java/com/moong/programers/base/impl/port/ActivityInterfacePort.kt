@@ -5,13 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import com.moong.programers.base.ActivityReference
 
-/**
- * pyxisbaseapp
- * Class: ActivityInterfacePort
- * Created by Pyxis on 10/20/18.
- *
- * Description:
- */
 
 internal object ActivityInterfacePort {
 

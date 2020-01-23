@@ -14,14 +14,6 @@ import androidx.recyclerview.widget.DiffUtil
 import com.moong.programers.utils.ShowDialogEvent
 import org.greenrobot.eventbus.EventBus
 
-
-/**
- * ChallangeProject
- * Class: ItemAdapter
- * Created by appg on 2020-01-07.
- *
- * Description:
- */
 class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     private val mItems: ArrayList<ItemData> = arrayListOf()
 
@@ -50,7 +42,7 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 //        notifyDataSetChanged()
 //    }
     fun setItems(list: List<ItemData>) {
-        val diffCallback = ItemDiffCallback(mItems,list)
+        val diffCallback = ItemDiffCallback(mItems, list)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
 
         mItems.clear()
@@ -58,20 +50,19 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
         diffResult.dispatchUpdatesTo(this)
     }
 
-    fun addItems(list: List<ItemData>) {
-        val a = mItems.size
-        val b = list.size
-        mItems.addAll(list.subList(a, b))
-//        mItems.addAll(list)
-        notifyItemRangeChanged(mItems.size, list.size)
-    }
+//    fun addItems(list: List<ItemData>) {
+//        val a = mItems.size
+//        val b = list.size
+//        mItems.addAll(list.subList(a, b))
+////        mItems.addAll(list)
+//        notifyItemRangeChanged(mItems.size, list.size)
+//    }
 
     private fun setFadeAnimation(view: View) {
         val anim = AlphaAnimation(0.0f, 1.0f)
         anim.duration = 400
         view.startAnimation(anim)
     }
-
 
     class ItemViewHolder(var binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
 

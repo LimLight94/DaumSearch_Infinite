@@ -4,13 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import com.moong.programers.base.impl.port.ActivityInterfacePort;
 
-/**
- * PyxisBaseApp
- * Class: ActivityInterface
- * Created by Pyxis on 2/4/18.
- * <p>
- * Description:
- */
 @SuppressWarnings("SameParameterValue")
 public interface ActivityInterface {
 

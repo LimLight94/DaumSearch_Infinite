@@ -9,13 +9,6 @@ import pyxis.uzuki.live.richutilskt.impl.F1
 import pyxis.uzuki.live.richutilskt.utils.isEmpty
 import pyxis.uzuki.live.richutilskt.utils.selector
 
-/**
- * pyxisbaseapp
- * Class: AlertInterfacePort
- * Created by Pyxis on 10/20/18.
- *
- * Description:
- */
 object AlertInterfacePort : NonActivityInterface {
 
     @JvmStatic

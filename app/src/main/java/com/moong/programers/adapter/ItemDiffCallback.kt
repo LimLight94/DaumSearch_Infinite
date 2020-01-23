@@ -3,13 +3,6 @@ package com.moong.programers.adapter
 import androidx.recyclerview.widget.DiffUtil
 import com.moong.programers.data.ItemData
 
-/**
- * ChallangeProject
- * Class: ItemDiffCallback
- * Created by appg on 2020-01-20.
- *
- * Description:
- */
 class ItemDiffCallback(
         private val oldList: List<ItemData>,
         private val newList: List<ItemData>

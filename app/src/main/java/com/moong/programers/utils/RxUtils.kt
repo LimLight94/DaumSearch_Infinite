@@ -5,15 +5,7 @@ import androidx.databinding.ObservableField
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.MainThreadDisposable
-import io.reactivex.functions.Consumer
 
-/**
- * ChallangeProject
- * Class: RxUtils
- * Created by appg on 2020-01-13.
- *
- * Description:
- */
 class RxUtils<T>(private val observableString: ObservableField<T>) : Observable<T>() {
 
     override fun subscribeActual(observer: Observer<in T>) {

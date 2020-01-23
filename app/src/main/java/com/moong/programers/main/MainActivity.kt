@@ -46,7 +46,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
             adapter = itemAdapter
             addItemDecoration(ItemAdapter.ItemOffsetDecoration(context, R.dimen.item_offset))
             addOnScrollListener(object : EndlessRecyclerViewScrollListener(gridlayoutManager) {
-                override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                     mViewModel.loadNextPage()
                 }
             })

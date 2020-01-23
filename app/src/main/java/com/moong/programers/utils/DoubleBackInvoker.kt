@@ -10,13 +10,6 @@ import com.moong.programers.base.impl.AlertInterface.getString
 import com.moong.programers.base.impl.NonActivityInterface
 import pyxis.uzuki.live.richutilskt.utils.reboot
 
-/**
- * ChallangeProject
- * Class: DoubleBackInvoker
- * Created by appg on 2020-01-20.
- *
- * Description:
- */
 object DoubleBackInvoker : NonActivityInterface {
     private var doubleBackToExitPressedOnce = false
 

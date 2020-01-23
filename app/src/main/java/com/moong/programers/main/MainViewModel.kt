@@ -31,10 +31,10 @@ constructor(application: Application) : BaseViewModel(application) {
     val mDscrption = ObservableField<String>("")
     val mIsDetail_Loading = ObservableBoolean(false)
 
-    private var currentPage = 1
+    private var mCurrentPage = 1
     private val mMainRepository = MainRepository
 
-    private lateinit var detailDisposable: Disposable
+    private lateinit var mDetailDisposable: Disposable
 
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
@@ -50,7 +50,7 @@ constructor(application: Application) : BaseViewModel(application) {
             val disposable = mMainRepository.getItemList(Constants.API_SKIN_TYPE[mSkinType.get()!!], page, mKeyWord.get().toString())
                     .subscribe({ listBeanRes ->
                         listBeanRes.body?.let { mDataList.addAll(it) }
-                        currentPage = page + 1
+                        mCurrentPage = page + 1
                         mIsContent_Loading.set(false)
                     }, {
                         ignoreError(it)
@@ -60,7 +60,7 @@ constructor(application: Application) : BaseViewModel(application) {
         } else {
             val disposable = mMainRepository.getItemList(Constants.API_SKIN_TYPE[mSkinType.get()!!], page).subscribe({ listBeanRes ->
                 listBeanRes.body?.let { mDataList.addAll(it) }
-                currentPage = page + 1
+                mCurrentPage = page + 1
                 mIsContent_Loading.set(false)
             }, {
                 ignoreError(it)
@@ -71,7 +71,7 @@ constructor(application: Application) : BaseViewModel(application) {
     }
 
     fun loadNextPage() {
-        getItemList(currentPage)
+        getItemList(mCurrentPage)
     }
 
     private fun checkChange() {
@@ -84,10 +84,10 @@ constructor(application: Application) : BaseViewModel(application) {
 
     fun getItemDetail(id: Int) {
         if (mIsDetail_Loading.get()) {
-            detailDisposable.dispose()
+            mDetailDisposable.dispose()
         }
         mIsDetail_Loading.set(true)
-        detailDisposable = mMainRepository.getItemDetail(id).subscribe({ itemBeansRes ->
+        mDetailDisposable = mMainRepository.getItemDetail(id).subscribe({ itemBeansRes ->
             itemBeansRes.body?.let {
                 mTitle.set(it.title)
                 mImage.set(it.fullSizeImage)
@@ -99,7 +99,7 @@ constructor(application: Application) : BaseViewModel(application) {
             ignoreError(it)
             mIsDetail_Loading.set(false)
         })
-        addDisposable(detailDisposable)
+        addDisposable(mDetailDisposable)
     }
 
     fun clickCloseBtn(view : View){

@@ -7,13 +7,6 @@ import android.os.Bundle
 import java.lang.ref.WeakReference
 import java.util.*
 
-/**
- * ChallangeProject
- * Class: ActivityReference
- * Created by appg on 2020-01-09.
- *
- * Description:
- */
 object ActivityReference {
     private var mTopActivityWeakRef: WeakReference<Activity>? = null
     private val mActivityList: LinkedList<Activity> = LinkedList()

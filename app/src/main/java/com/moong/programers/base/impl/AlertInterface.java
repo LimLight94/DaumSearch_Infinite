@@ -12,13 +12,6 @@ import java.util.List;
 
 import pyxis.uzuki.live.richutilskt.impl.F1;
 
-/**
- * PyxisBaseApp
- * Class: AlertInterface
- * Created by Pyxis on 2/4/18.
- * <p>
- * Description:
- */
 @SuppressWarnings("SameParameterValue")
 public interface AlertInterface{
 
