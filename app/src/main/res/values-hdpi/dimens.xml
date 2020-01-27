@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_left_margin">8dp</dimen>
+    <dimen name="list_item_radius"></dimen>
+    <dimen name="list_image_size">114.67</dimen>
+
+
+    <dimen name="item_offset">12dp</dimen>
+</resources>

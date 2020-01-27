@@ -210,7 +210,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:text="@{viewModel.MTitle}"
-                        android:textColor="@color/black"
+                        android:textColor="@color/black_two"
                         android:textSize="34sp"
                         android:textStyle="bold" />
 
@@ -234,7 +234,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="18dp"
                         android:text="@{viewModel.MDscrption}"
-                        android:textColor="@color/black"
+                        android:textColor="@color/black_two"
                         android:textSize="14sp" />
                 </LinearLayout>
             </ScrollView>

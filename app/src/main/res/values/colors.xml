@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#9100BE</color>
+    <color name="colorPrimary">#9013FE</color>
     <color name="colorPrimaryDark">#320141</color>
-    <color name="colorAccent">#D973F8</color>
+    <color name="colorAccent">#9013FE</color>
 
-    <color name="pointColor">#9100BE</color>
+    <color name="pointColor">#9013FE</color>
 
     <color name="black">#000000</color>
-    <color name="grey">#dcdcdc</color>
+    <color name="black_two">#141428</color>
+    <color name="grey">#ABABC4</color>
+    <color name="grey_two">#A3A3B5</color>
     <color name="white">#ffffff</color>
 
 

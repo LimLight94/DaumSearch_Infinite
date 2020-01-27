@@ -33,7 +33,7 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@{bean.title}"
-                android:textColor="@color/black"
+                android:textColor="@color/black_two"
                 android:textStyle="bold"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="parent"
