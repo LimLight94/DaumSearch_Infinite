@@ -1,4 +1,4 @@
-package com.moong.programers.adapter
+package com.moong.programers.main.adapter
 
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager

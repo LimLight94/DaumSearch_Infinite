@@ -20,15 +20,10 @@ class ResultCodeException : Exception, NonActivityInterface {
                 return ResultCodeException("Error on Communicate")
             }
 
-            val rcode = res.statusCode
-            var message = "오류 발생 "
-            when (rcode) {
-                400 -> message += ": 클라이언트 요청오류"
-                404 -> message += ": 조회한 데이터 없음"
-                500 -> message += ": 서버 오류"
-            }
+            val rcode = res.errorType
+            var message = res.message
 
-            return ResultCodeException(res, message)
+            return ResultCodeException(res, "$rcode : $message" )
         }
     }
 }

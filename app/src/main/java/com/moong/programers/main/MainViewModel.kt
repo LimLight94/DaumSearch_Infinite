@@ -47,9 +47,10 @@ constructor(application: Application) : BaseViewModel(application) {
         requireActivity().hideKeyboard()
         mIsContent_Loading.set(true)
         if (mKeyWord.get().toString().isNotEmpty()) {
-            val disposable = mMainRepository.getItemList(Constants.API_SKIN_TYPE[mSkinType.get()!!], page, mKeyWord.get().toString())
-                    .subscribe({ listBeanRes ->
-                        listBeanRes.body?.let { mDataList.addAll(it) }
+            val disposable = mMainRepository.getItemList(Constants.API_TYPE[mSkinType.get()!!], page, mKeyWord.get().toString())
+                    .subscribe({ beanRes ->
+                        beanRes.documents?.let {
+                            mDataList.addAll(it) }
                         mCurrentPage = page + 1
                         mIsContent_Loading.set(false)
                     }, {
@@ -58,8 +59,9 @@ constructor(application: Application) : BaseViewModel(application) {
                     })
             addDisposable(disposable)
         } else {
-            val disposable = mMainRepository.getItemList(Constants.API_SKIN_TYPE[mSkinType.get()!!], page).subscribe({ listBeanRes ->
-                listBeanRes.body?.let { mDataList.addAll(it) }
+            val disposable = mMainRepository.getItemList(Constants.API_TYPE[mSkinType.get()!!], page).subscribe({ beanRes ->
+                beanRes.documents?.let {
+                    mDataList.addAll(it) }
                 mCurrentPage = page + 1
                 mIsContent_Loading.set(false)
             }, {

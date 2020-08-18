@@ -1,4 +1,4 @@
-package com.moong.programers.adapter
+package com.moong.programers.main.adapter
 
 import android.content.Context
 import android.graphics.Rect
@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
-import com.moong.programers.data.ItemData
 import com.moong.programers.databinding.ItemListBinding
 import android.view.animation.AlphaAnimation
 import androidx.recyclerview.widget.DiffUtil
+import com.moong.programers.data.ItemData
 import com.moong.programers.utils.ShowDialogEvent
 import org.greenrobot.eventbus.EventBus
 
@@ -19,11 +19,11 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        binding.root.setOnClickListener {
-            binding.bean?.id?.let {
-                EventBus.getDefault().post(ShowDialogEvent(it))
-            }
-        }
+//        binding.root.setOnClickListener {
+//            binding.bean?.id?.let {
+//                EventBus.getDefault().post(ShowDialogEvent(it))
+//            }
+//        }
         return ItemViewHolder(binding)
     }
 

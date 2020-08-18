@@ -5,8 +5,8 @@ import android.view.inputmethod.EditorInfo
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.moong.programers.R
-import com.moong.programers.adapter.EndlessRecyclerViewScrollListener
-import com.moong.programers.adapter.ItemAdapter
+import com.moong.programers.main.adapter.EndlessRecyclerViewScrollListener
+import com.moong.programers.main.adapter.ItemAdapter
 import com.moong.programers.base.BaseActivity
 import com.moong.programers.databinding.MainActivityBinding;
 import com.moong.programers.utils.DoubleBackInvoker

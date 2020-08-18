@@ -14,9 +14,7 @@
 
 
     <string-array name="type_array">
-        <item>모든 피부 타입"</item>
-        <item>지성 타입</item>
-        <item>건성 타입</item>
-        <item>민감성 타입</item>
+        <item>정확도</item>
+        <item>최신순</item>
     </string-array>
 </resources>

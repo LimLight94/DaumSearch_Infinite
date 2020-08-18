@@ -12,7 +12,7 @@ public class RWComposer<T> extends Transformer<T> {
 
     public RWComposer(boolean showPopup) {
         mFlatMapFunction = (Function<Res<T>, ObservableSource<?>>) value -> {
-            if (value != null && value.getStatusCode() == 200) {
+            if (value != null && value.getMessage().isEmpty()) {
                 return Observable.just(value);
             } else {
                 return Observable.error(ResultCodeException.Companion.create(value, showPopup));

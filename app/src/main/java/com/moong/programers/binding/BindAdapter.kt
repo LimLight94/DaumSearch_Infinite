@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.moong.programers.data.ItemData
-import com.moong.programers.adapter.ItemAdapter
+import com.moong.programers.main.adapter.ItemAdapter
 
 
 object BindAdapter {
