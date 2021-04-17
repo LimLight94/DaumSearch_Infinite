@@ -13,17 +13,18 @@ import androidx.recyclerview.widget.DiffUtil
 import com.moong.programers.data.ItemData
 import com.moong.programers.utils.ShowDialogEvent
 import org.greenrobot.eventbus.EventBus
+import kotlin.collections.ArrayList
 
 class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     private val mItems: ArrayList<ItemData> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-//        binding.root.setOnClickListener {
-//            binding.bean?.id?.let {
-//                EventBus.getDefault().post(ShowDialogEvent(it))
-//            }
-//        }
+        binding.root.setOnClickListener {
+            binding.bean?.docUrl?.let {
+                EventBus.getDefault().post(ShowDialogEvent(it))
+            }
+        }
         return ItemViewHolder(binding)
     }
 

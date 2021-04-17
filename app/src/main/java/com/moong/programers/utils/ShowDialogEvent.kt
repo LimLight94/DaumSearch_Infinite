@@ -1,4 +1,4 @@
 package com.moong.programers.utils
 
-class ShowDialogEvent(var itemId: Int) {
+class ShowDialogEvent(var itemUrl: String) {
 }

@@ -72,6 +72,9 @@ dependencies {
     //SlideUp
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
+    // Guava
+    implementation 'com.google.guava:guava:22.0-android'
+
     // Dagger2
 //    implementation 'com.google.dagger:dagger:2.16'
 //    kapt 'com.google.dagger:dagger-compiler:2.16'

@@ -12,6 +12,7 @@ import com.moong.programers.data.ItemData
 import com.moong.programers.net.MainRepository
 import com.moong.programers.utils.RxUtils.Companion.propertyChanges
 import com.moong.programers.utils.ShowDialogEvent
+import com.moong.programers.utils.UpBtnEvent
 import com.moong.programers.utils.ignoreError
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
@@ -105,7 +106,11 @@ constructor(application: Application) : BaseViewModel(application) {
     }
 
     fun clickCloseBtn(view : View){
-        postEvent(ShowDialogEvent(-1))
+        postEvent(ShowDialogEvent("close"))
+    }
+
+    fun clickUpBtn(view : View){
+        postEvent(UpBtnEvent(true))
     }
 
 }
