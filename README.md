@@ -17,8 +17,8 @@ infinite Scroll, modal Design UI/UX
 
 1. recyclerView Grid (infinite scroll)
 
-<center><img src="../art/infinite.gif" width="300"></center>
+<center><img src="art/infinite.gif" width="300"></center>
 
 2. Modal WebView
 
-<center><img src="../art/modalWebview.gif" width="300"></center>
+<center><img src="art/modalWebview.gif" width="300"></center>
